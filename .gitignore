@@ -11,7 +11,7 @@ __pycache__/
 
 # ignore .pem file
 *.pem
-
+.telegramtoken
 # Distribution / packaging
 .Python
 env/
