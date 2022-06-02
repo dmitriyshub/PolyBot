@@ -27,35 +27,30 @@ class Bot:
         """Sends video to a chat"""
         context.bot.send_video(chat_id=update.message.chat_id, video=open(file_path, 'rb'), supports_streaming=True)
 
-    def send_text(self, update, text, quote=False):
+    def send_text(self, update,  text, quote=False):
         """Sends text to a chat"""
         # retry https://github.com/python-telegram-bot/python-telegram-bot/issues/1124
         update.message.reply_text(text, quote=quote)
 
+
 class QuoteBot(Bot):
-    def _message_handler(self, update):
-        to_quote = True
+    pass
 
-        if update.message.text == 'Don\'t quote me please':
-            to_quote = False
-
-        self.send_text(update, f'Your original message: {update.message.text}', quote=to_quote)
 
 
 class YoutubeBot(Bot):
 
-    def send_text(self, update, text):
+    def _message_handler(self, update, context):
+        self.send_text(update, f'Wait please your video is dowloading : {update.message.text}')
         downloaded_videos = utils.search_download_youtube_video(update.message.text)
-        update.message.reply_text(downloaded_videos)
-        bot.send_video(chat_id=update.message.chat_id, video=open(file_path, 'rb'), supports_streaming=True)
-
-
-
+        s = ''.join(downloaded_videos)
+        context.bot.send_video(chat_id=update.message.chat_id, video=open(s, 'rb'), supports_streaming=True)
 
 
 
 if __name__ == '__main__':
     with open('.telegramToken') as f:
         _token = f.read()
+
     my_bot = YoutubeBot(_token)
     my_bot.start()
