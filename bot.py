@@ -56,7 +56,7 @@ class YoutubeBot(Bot):
                 os.remove(f'./{video}')
 
 if __name__ == '__main__':
-    with open('secret/.telegramToken.txt') as f:
+    with open('secret/.telegramToken') as f:
         _token = f.read()
 
     my_bot = YoutubeBot(_token)
