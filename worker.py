@@ -11,6 +11,13 @@ def process_msg(msg):
 
     # TODO upload the downloaded video to your S3 bucket
 
+def upload_video(video):
+    s3 = boto3.resource('s3')
+    bucket = "EX1_polybot-s3-bucket"
+    s3.Bucket(bucket).upload_file("your/local/file", "dump/file")
+
+
+
 
 def main():
     while True:
