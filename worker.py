@@ -2,6 +2,7 @@ import json
 import time
 import boto3
 import botocore
+import os
 from loguru import logger
 from utils import search_download_youtube_video
 
@@ -9,11 +10,13 @@ from utils import search_download_youtube_video
 def process_msg(msg):
     downloaded_videos = search_download_youtube_video(msg)
 
-    for index, video in enumerate(downloaded_videos, start=1):
+
 
     # TODO upload the downloaded video to your S3 bucket
+    for index, video in enumerate(downloaded_videos, start=1):
         s3 = boto3.client('s3')
         s3.upload_file(video, 's3-ex1-dmitriyshub', video)
+        os.remove(f'./{video}')
 
 
 def main():
