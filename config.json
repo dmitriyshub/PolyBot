@@ -1,5 +1,5 @@
 {
-  "aws_region": "region-id",
-  "bot_to_worker_queue_name": "queue-name",
-  "autoscaling_group_name": "asg-name"
+  "aws_region": "eu-west-2",
+  "bot_to_worker_queue_name": "sqs-ex1-dmitriyshub",
+  "autoscaling_group_name": "autoscale-ex1-dmitriyshub"
 }

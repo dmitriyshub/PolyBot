@@ -7,9 +7,11 @@ from utils import search_download_youtube_video
 
 
 def process_msg(msg):
-    search_download_youtube_video(msg)
+    video = search_download_youtube_video(msg)
 
     # TODO upload the downloaded video to your S3 bucket
+    s3 = boto3.client('s3')
+    s3.upload_file(video, 's3-ex1-dmitriyshub', msg)
 
 
 def main():
