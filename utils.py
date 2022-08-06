@@ -28,8 +28,7 @@ def calc_backlog_per_instance(sqs_queue_client, asg_client, asg_group_name):
         else:
             backlog_per_instance = msgs_in_queue / asg_size
 
-        logger.info(f'backlog per instance: {backlog_per_instance}')
-
+        logger.info(f'backlog per instance: {backlog_per_instance},msg:{msgs_in_queue},workers:{asg_size}')
         # TODO send the backlog_per_instance metric to cloudwatch
 
         # Create CloudWatch client
@@ -39,18 +38,18 @@ def calc_backlog_per_instance(sqs_queue_client, asg_client, asg_group_name):
         cloudwatch.put_metric_data(
             MetricData=[
                 {
-                    'MetricName': 'PAGES_VISITED',
+                    'MetricName': 'backlog_per_instance',
                     'Dimensions': [
                         {
-                            'Name': 'UNIQUE_PAGES',
-                            'Value': 'URLS'
+                            'Name': 'count_backlog',
+                            'Value': 'value_backlog'
                         },
                     ],
                     'Unit': 'None',
-                    'Value': 1.0
+                    'Value': backlog_per_instance
                 },
             ],
-            Namespace='SITE/TRAFFIC'
+            Namespace='dmitriyshub/metrics'
         )
 
-        time.sleep(60)
+        time.sleep(5)

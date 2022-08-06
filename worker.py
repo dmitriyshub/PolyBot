@@ -30,7 +30,7 @@ def main():
             for msg in messages:
                 logger.info(f'processing message {msg}')
                 process_msg(msg.body)
-
+                logger.info(f'task messege id: {msg.message_id}')
                 # delete message from the queue after is was handled
                 response = queue.delete_messages(Entries=[{
                     'Id': msg.message_id,
