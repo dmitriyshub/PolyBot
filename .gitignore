@@ -8,7 +8,9 @@ __pycache__/
 # C extensions
 *.so
 
+#telegram tokens
 .telegramToken
+secret/.telegramToken
 
 # ignore .pem file
 *.pem
