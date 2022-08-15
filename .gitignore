@@ -9,7 +9,8 @@ __pycache__/
 *.so
 
 .telegramToken
-
+.terraform.lock.hcl
+*.terraform*
 # ignore .pem file
 *.pem
 

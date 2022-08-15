@@ -2,7 +2,7 @@ resource "aws_s3_bucket" "b" {
     bucket = var.bucket_name 
 
   tags = {
-    Name        = "My bucket"
+    Name        = "EX1_aws_polybot"
     Environment = "prod"
   }
 }
