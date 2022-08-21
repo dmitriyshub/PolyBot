@@ -1,4 +1,4 @@
-resource "aws_security_group" "EX1_polybot-secure-group" {
+  resource "aws_security_group" "EX1_polybot-secure-group" {
   name        = "EX1_polybot"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.vpc.id
@@ -26,6 +26,6 @@ resource "aws_security_group" "EX1_polybot-secure-group" {
   }
 
   tags = {
-    Name = "Alexey-security_group-terraform"
+    Name = "EX1-Polybot-security_group-terraform"
   }
 }
