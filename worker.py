@@ -15,7 +15,7 @@ def process_msg(msg):
     # TODO upload the downloaded video to your S3 bucket
     for index, video in enumerate(downloaded_videos, start=1):
         s3 = boto3.client('s3')
-        s3.upload_file(video, 'alexey-backet', video)
+        s3.upload_file(video, 'alexey-dima-polybot-bucket', video)
         os.remove(f'./{video}')
 
 
