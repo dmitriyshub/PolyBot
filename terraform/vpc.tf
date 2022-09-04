@@ -3,6 +3,6 @@ resource "aws_vpc" "vpc" {
   instance_tenancy = "default"
 
   tags = {
-    Name = "EX1_polybot-vpc"
+    Name = "${var.project_name}-vpc"
   }
 }

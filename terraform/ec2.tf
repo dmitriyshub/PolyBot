@@ -1,18 +1,33 @@
 
+
 resource "aws_instance" "my_Amazon_linux" {
   # count                  = var.prefix
-  ami                         = "ami-0a1ee2fb28fe05df3" #Amazon Linux AMI
+  #  ami                         = "ami-0a1ee2fb28fe05df3" #Amazon Linux AMI
+  ami                         = "ami-06402f02caa521327" # My Amazon Linux AMI
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [aws_security_group.EX1_polybot-secure-group.id]
-  subnet_id                   = aws_subnet.public-subnet-1a.id
+  subnet_id                   = aws_subnet.public-subnet-2b.id
   associate_public_ip_address = true
   key_name                    = "alexeymihaylov_key"
-  user_data                   = file("script.sh")
 
-  depends_on = [aws_s3_bucket.bucket,aws_s3_object.assassinatos]
+  depends_on = [aws_vpc.vpc, aws_autoscaling_group.Polybot-aws_autoscaling_group]
   tags = {
-    Name = "bot-client"
-    Env  = "terraform"
+    Name        = "${var.project_name} -client"
+    environment = "tf"
   }
 
+    provisioner "file" {
+    source      = "E:\PolyBot\.telegramToken"
+    destination = "app/.telegramToken"
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file("D:\alexeymihaylov_key.pem")
+      host        = self.public_dns
+    }
+  }
+
+
 }
+

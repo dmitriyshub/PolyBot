@@ -6,7 +6,7 @@
   map_public_ip_on_launch = true
   availability_zone       = var.availability_zone_a
   tags = {
-    Name = "EX1_polybot-public-subnet-1--terraform"
+    Name = "${var.project_name}-public-subnet-1--terraform"
   }
 }
 # Create Public Subnet 2
@@ -17,7 +17,7 @@ resource "aws_subnet" "public-subnet-2b" {
   map_public_ip_on_launch = true
   availability_zone       = var.availability_zone_b
   tags = {
-    Name = "EX1_polybot-public-subnet-2--terraform"
+    Name = "${var.project_name}-public-subnet-2--terraform"
   }
 }
 

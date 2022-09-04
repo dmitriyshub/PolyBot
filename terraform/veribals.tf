@@ -37,6 +37,10 @@ variable "availability_zone_b" {
 variable "bucket_name" {
    default     = "polybotbucket"
 }
+variable "project_name" {
+   default     = "Alexey_Dima_polybot"
+}
+
 
 variable "acl_value" {
     default = "private"

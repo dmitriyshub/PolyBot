@@ -1,5 +1,5 @@
-resource "aws_sqs_queue" "terraform_queue" {
-  name                      = "EX1_polybot-sqs-queue"
+ resource "aws_sqs_queue" "terraform_queue" {
+  name                      = "${var.project_name}-sqs-queue"
   delay_seconds             = 90
   max_message_size          = 262144
   message_retention_seconds = 345600
@@ -8,6 +8,7 @@ resource "aws_sqs_queue" "terraform_queue" {
   
 
   tags = {
+    Name = "${var.project_name}-sqs-queue"
     Environment = "production"
   }
 }

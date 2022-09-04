@@ -1,5 +1,5 @@
   resource "aws_security_group" "EX1_polybot-secure-group" {
-  name        = "EX1_polybot"
+  name        = "${var.project_name}-polybot"
   description = "Allow TLS inbound traffic"
   vpc_id      = aws_vpc.vpc.id
 
@@ -26,6 +26,7 @@
   }
 
   tags = {
-    Name = "EX1-Polybot-security_group-terraform"
+    Name = "${var.project_name}-security_group"
+    Environment = "tf"
   }
 }

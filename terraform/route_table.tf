@@ -8,7 +8,8 @@ resource "aws_route_table" "public-route-table" {
     gateway_id = aws_internet_gateway.internet-gateway.id
   }
   tags = {
-    Name = "EX1_polybot_Route Table-terraform"
+    Name = "${var.project_name}_Route Table"
+    environment ="tf"
   }
 }
 
@@ -25,7 +26,8 @@ resource "aws_route_table_association" "public-subnet-2-route-table-association"
 resource "aws_internet_gateway" "internet-gateway" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name = "EX1_polybot_internet-gateway-terraform"
+    Name = "${var.project_name}_internet-gateway"
+    environment ="tf"
   }
 
 }
