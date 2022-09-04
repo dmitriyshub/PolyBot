@@ -2,9 +2,9 @@
 
 resource "aws_instance" "my_Amazon_linux" {
   # count                  = var.prefix
-  #  ami                         = "ami-0a1ee2fb28fe05df3" #Amazon Linux AMI
-  ami                         = "ami-06402f02caa521327" # My Amazon Linux AMI
-  instance_type               = "t2.micro"
+  ami = "ami-0a1ee2fb28fe05df3" #Amazon Linux AMI
+  #  ami                         = "ami-06402f02caa521327" # My Amazon Linux AMI
+  instance_type               = "t3.xlarge"
   vpc_security_group_ids      = [aws_security_group.EX1_polybot-secure-group.id]
   subnet_id                   = aws_subnet.public-subnet-2b.id
   associate_public_ip_address = true
@@ -16,18 +16,35 @@ resource "aws_instance" "my_Amazon_linux" {
     environment = "tf"
   }
 
-    provisioner "file" {
-    source      = "E:\PolyBot\.telegramToken"
-    destination = "app/.telegramToken"
+#  provisioner "file" {
+#    source      = ".telegramToken"
+#    destination = ".telegramToken"
+#
+#    connection {
+#      type        = "ssh"
+#      user        = "ec2-user"
+#      private_key = file("alexeymihaylov_key.pem")
+#      host        = self.public_ip
+#    }
+#  }
+  provisioner "file" {
+    source      = "script.sh"
+    destination = "/tmp/script.sh"
+  }
 
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/script.sh",
+      "/tmp/script.sh args",
+    ]
+  }
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("D:\alexeymihaylov_key.pem")
-      host        = self.public_dns
+      private_key = file("alexeymihaylov_key.pem")
+      host        = self.public_ip
     }
   }
 
 
-}
 
