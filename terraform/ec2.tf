@@ -9,42 +9,42 @@ resource "aws_instance" "my_Amazon_linux" {
   subnet_id                   = aws_subnet.public-subnet-2b.id
   associate_public_ip_address = true
   key_name                    = "alexeymihaylov_key"
-
-  depends_on = [aws_vpc.vpc, aws_autoscaling_group.Polybot-aws_autoscaling_group]
+  user_data                   = file("script.sh")
+  depends_on                  = [aws_vpc.vpc, aws_autoscaling_group.Polybot-aws_autoscaling_group]
   tags = {
     Name        = "${var.project_name} -client"
     environment = "tf"
   }
 
+  #  provisioner "file" {
+  #    source      = ".telegramToken"
+  #    destination = ".telegramToken"
+  #
+  #    connection {
+  #      type        = "ssh"
+  #      user        = "ec2-user"
+  #      private_key = file("alexeymihaylov_key.pem")
+  #      host        = self.public_ip
+  #    }
+  #  }
 #  provisioner "file" {
-#    source      = ".telegramToken"
-#    destination = ".telegramToken"
-#
-#    connection {
-#      type        = "ssh"
-#      user        = "ec2-user"
-#      private_key = file("alexeymihaylov_key.pem")
-#      host        = self.public_ip
-#    }
+#    source      = "script.sh"
+#    destination = "/tmp/script.sh"
 #  }
-  provisioner "file" {
-    source      = "script.sh"
-    destination = "/tmp/script.sh"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/script.sh",
-      "/tmp/script.sh args",
-    ]
-  }
-    connection {
-      type        = "ssh"
-      user        = "ec2-user"
-      private_key = file("alexeymihaylov_key.pem")
-      host        = self.public_ip
-    }
-  }
+#
+#  provisioner "remote-exec" {
+#    inline = [
+#      "chmod +x /tmp/script.sh",
+#      "/tmp/script.sh args",
+#    ]
+#  }
+#  connection {
+#    type        = "ssh"
+#    user        = "ec2-user"
+#    private_key = file("alexeymihaylov_key.pem")
+#    host        = self.public_ip
+#  }
+}
 
 
 

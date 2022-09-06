@@ -25,10 +25,10 @@ resource "aws_s3_object" "telegram" {
   acl    = "private"
   source = "D:/elements/project/PolyBot/.telegramToken"
 }
-#resource "aws_s3_object" "script" {
-#  bucket = aws_s3_bucket.bucket.id
-#  key    = "data/script.sh"
-#  acl    = "private"
-#  source = "D:/elements/project/PolyBot/terraform2/ec2_user_data.sh"
-##  etag   = filemd5("D:/elements/project/PolyBot/.envfile")
-#}
+resource "aws_s3_object" "metric" {
+  bucket = aws_s3_bucket.bucket.id
+  key    = "data/Config2.json"
+  acl    = "private"
+  source = "D:/elements/project/PolyBot/Config2.json"
+#  etag   = filemd5("D:/elements/project/PolyBot/.envfile")
+}
