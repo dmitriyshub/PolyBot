@@ -1,10 +1,10 @@
 resource "aws_autoscaling_group" "Polybot-aws_autoscaling_group" {
   name                = "${var.project_name}-autoscaling-group"
   desired_capacity    = 0
-  max_size            = 2
+  max_size            = 3
   min_size            = 0
   vpc_zone_identifier = [aws_subnet.public-subnet-1a.id, aws_subnet.public-subnet-2b.id]
-  default_cooldown    = 30
+  default_cooldown    = 300
 
   launch_template {
     id = aws_launch_template.EX1_polybot_temp.id
