@@ -29,27 +29,25 @@ def calc_backlog_per_instance(sqs_queue_client, asg_client, asg_group_name):
             backlog_per_instance = msgs_in_queue / asg_size
 
         logger.info(f'backlog per instance: {backlog_per_instance},msg:{msgs_in_queue},workers:{asg_size}')
-        # TODO send the backlog_per_instance metric to cloudwatch
 
         # Create CloudWatch client
-        cloudwatch = boto3.client('cloudwatch')
-
+        cloudwatch = boto3.client('cloudwatch', region_name='eu-central-1')
         # Put custom metrics
         cloudwatch.put_metric_data(
-            MetricData=[
+            Namespace = 'Alexey_Dima /AutoScaling',
+            MetricData = [
                 {
                     'MetricName': 'backlog_per_instance',
                     'Dimensions': [
                         {
-                            'Name': 'count_backlog',
-                            'Value': 'value_backlog'
+                            'Name': 'project',
+                            'Value': 'SQS-AS'
                         },
                     ],
-                    'Unit': 'None',
-                    'Value': backlog_per_instance
+                    'Value': backlog_per_instance,
+                    'Unit': 'Count'
                 },
-            ],
-            Namespace='dmitriyshub/metrics'
+            ]
         )
 
         time.sleep(5)
