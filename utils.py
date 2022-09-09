@@ -1,7 +1,7 @@
 import time
 from yt_dlp import YoutubeDL
 from loguru import logger
-import boto3
+
 
 def search_download_youtube_video(video_name, num_results=1):
     """
@@ -34,20 +34,14 @@ def calc_backlog_per_instance(sqs_queue_client, asg_client, asg_group_name):
         cloudwatch = boto3.client('cloudwatch', region_name='eu-central-1')
         # Put custom metrics
         cloudwatch.put_metric_data(
-            Namespace = 'Alexey_Dima /AutoScaling',
+            Namespace = 'Alexey_Dima_polybot_metric/AutoScaling',
             MetricData = [
                 {
                     'MetricName': 'backlog_per_instance',
-                    'Dimensions': [
-                        {
-                            'Name': 'project',
-                            'Value': 'SQS-AS'
-                        },
-                    ],
                     'Value': backlog_per_instance,
                     'Unit': 'Count'
                 },
             ]
         )
 
-        time.sleep(5)
+        time.sleep(60)

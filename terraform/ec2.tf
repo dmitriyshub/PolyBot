@@ -10,7 +10,7 @@ resource "aws_instance" "my_Amazon_linux" {
   associate_public_ip_address = true
   key_name                    = "alexeymihaylov_key"
   user_data                   = file("script.sh")
-  depends_on                  = [aws_vpc.vpc, aws_autoscaling_group.Polybot-aws_autoscaling_group]
+#  depends_on                  = [aws_vpc.vpc, aws_autoscaling_group.Polybot-aws_autoscaling_group]
   tags = {
     Name        = "${var.project_name} -client"
     environment = "tf"

@@ -2,3 +2,8 @@
 .Dockerfile_bot
 SUBMISSION
 .envfile
+.telegramToken
+terraform*
+*terraform/
+dima_alexey_polybot.pem
+terraform.rar

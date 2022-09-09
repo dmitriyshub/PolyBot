@@ -17,21 +17,16 @@ resource "aws_sqs_queue_policy" "sqs_queue_policy" {
   queue_url = aws_sqs_queue.terraform_queue.id
   policy    = <<POLICY
 {
-  "Version": "2008-10-17",
-  "Id": "__default_policy_ID",
-  "Statement": [
-    {
-      "Sid": "__owner_statement",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "352708296901"
-      },
-      "Action": [
-        "SQS:*"
-      ],
-      "Resource": "arn:aws:sqs:eu-central-1:352708296901:"
-    }
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "sqs:*"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ]
 }
 POLICY
 }

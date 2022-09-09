@@ -17,18 +17,18 @@ resource "aws_s3_object" "assassinatos" {
   bucket = aws_s3_bucket.bucket.id
   key    = "data/.envfile"
   acl    = "private"
-  source = "E:/PolyBot/.envfile"
+  source = ".envfile"
 }
 resource "aws_s3_object" "telegram" {
   bucket = aws_s3_bucket.bucket.id
   key    = "data/.telegramToken"
   acl    = "private"
-  source = "E:/PolyBot/.telegramToken"
+  source = ".telegramToken"
 }
 resource "aws_s3_object" "metric" {
   bucket = aws_s3_bucket.bucket.id
   key    = "data/Config2.json"
   acl    = "private"
-  source = "E:/PolyBot/Config2.json"
+  source = "Config2.json"
 #  etag   = filemd5("D:/elements/project/PolyBot/.envfile")
 }

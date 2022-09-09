@@ -4,10 +4,12 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+terraform*
+secret/
 # C extensions
 *.so
 
+script.sh
 .telegramToken
 .terraform.lock.hcl
 *.terraform*
