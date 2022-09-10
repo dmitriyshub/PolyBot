@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "bucket" {
-    bucket = var.bucket_name
+  bucket        = var.bucket_name
+  force_destroy = true
 
   tags = {
     Name        = "${var.project_name}-bucket2"
@@ -30,5 +31,5 @@ resource "aws_s3_object" "metric" {
   key    = "data/Config2.json"
   acl    = "private"
   source = "Config2.json"
-#  etag   = filemd5("D:/elements/project/PolyBot/.envfile")
+  #  etag   = filemd5("D:/elements/project/PolyBot/.envfile")
 }
