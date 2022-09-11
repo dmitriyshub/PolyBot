@@ -4,7 +4,7 @@ resource "aws_instance" "my_Amazon_linux" {
   # count                  = var.prefix
   ami = "ami-0a1ee2fb28fe05df3" #Amazon Linux AMI
   #  ami                         = "ami-06402f02caa521327" # My Amazon Linux AMI
-  instance_type               = "t3.xlarge"
+  instance_type               = "t2.medium"
   vpc_security_group_ids      = [aws_security_group.EX1_polybot-secure-group.id]
   subnet_id                   = aws_subnet.public-subnet-2b.id
   associate_public_ip_address = true
@@ -15,6 +15,31 @@ resource "aws_instance" "my_Amazon_linux" {
     Name        = "${var.project_name} -client"
     environment = "tf"
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   #  provisioner "file" {
   #    source      = ".telegramToken"
