@@ -7,11 +7,6 @@ pipeline {
                 sh 'echo building...'
             }
         }
-        stage('Stage II') {
-            steps {
-                sh 'echo "stage II..."'
-            }
-        }
         stage('Build Bot app') {
             steps {
                 sh '''
