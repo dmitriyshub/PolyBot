@@ -12,11 +12,6 @@ pipeline {
                 sh 'echo "stage II..."'
             }
         }
-        stage('Stage III ...') {
-            steps {
-                sh 'echo echo "stage III..."'
-            }
-        }
         stage('Build Bot app') {
             steps {
                 sh '''
