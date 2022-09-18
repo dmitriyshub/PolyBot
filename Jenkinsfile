@@ -27,5 +27,12 @@ pipeline {
                 }
             }
         }
+        stage('Trigger Deploy') {
+            steps {
+                build job: 'Bot-Deploy', wait: false, parameters: [
+                    string(name: 'BOT_IMAGE_NAME', value: "${REGISTRY_URL}/${IMAGE_NAME}:${BUILD_NUMBER}")
+                ]
+            }
+        }
     }
 }
