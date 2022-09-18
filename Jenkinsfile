@@ -19,6 +19,13 @@ pipeline {
                    docker push 352708296901.dkr.ecr.eu-west-2.amazonaws.com/dmitriyshub-jenkins:$BUILD_NUMBER
                    '''
             }
+            post {
+                always {
+                    sh '''
+                    docker image prune --filter "label=app=bot"
+                    '''
+                }
+            }
         }
     }
 }
