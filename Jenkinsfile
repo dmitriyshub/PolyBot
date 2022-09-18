@@ -9,7 +9,7 @@ pipeline {
 //     }
 
     stages {
-        }
+
         stage('Build Bot app') {
             steps {
                 sh '''
