@@ -21,7 +21,7 @@ pipeline {
         stage("Generate Ansible Inventory") {
             environment {
                 BOT_EC2_APP_TAG = "dmitriyshub-app"
-                BOT_EC2_REGION = "eu-east-1"
+                BOT_EC2_REGION = "us-east-1"
             }
             steps {
                 sh 'aws ec2 describe-instances --region $BOT_EC2_REGION --filters "Name=tag:App,Values=$BOT_EC2_APP_TAG" --query "Reservations[].Instances[]" > hosts.json'
